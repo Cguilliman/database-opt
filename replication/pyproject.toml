@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "database-replication"
+version = "0.1.0"
+description = ""
+authors = ["Ihor <cguilliman@gmail.com>"]
+readme = "README.md"
+packages = [{include = "database_replication"}]
+
+[tool.poetry.dependencies]
+python = "3.11.6"
+mysql = "^0.0.3"
+mysql-connector-python = "^8.2.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
