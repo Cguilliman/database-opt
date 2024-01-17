@@ -1,0 +1,76 @@
+version: '3'
+
+services:
+  p1:
+    image: postgres:latest
+    container_name: p1
+    environment:
+      POSTGRES_DB: db
+      POSTGRES_USER: u
+      POSTGRES_PASSWORD: p
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres1_data:/var/lib/postgresql/data
+
+  p2:
+    image: postgres:latest
+    container_name: p2
+    environment:
+      POSTGRES_DB: db
+      POSTGRES_USER: u
+      POSTGRES_PASSWORD: p
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres2_data:/var/lib/postgresql/data
+
+  p3:
+    image: postgres:latest
+    container_name: p3
+    environment:
+      POSTGRES_DB: db
+      POSTGRES_USER: u
+      POSTGRES_PASSWORD: p
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres3_data:/var/lib/postgresql/data
+
+  citus:
+    image: citusdata/citus:latest
+    container_name: citus
+    environment:
+      POSTGRES_DB: db
+      POSTGRES_USER: u
+      POSTGRES_PASSWORD: p
+    ports:
+      - "5435:5432"
+  
+  citus2:
+    image: citusdata/citus:latest
+    container_name: citus2
+    environment:
+      POSTGRES_DB: db
+      POSTGRES_USER: u
+      POSTGRES_PASSWORD: p
+    ports:
+      - "5436:5432"
+
+  citus3:
+    image: citusdata/citus:latest
+    container_name: citus3
+    environment:
+      POSTGRES_DB: db
+      POSTGRES_USER: u
+      POSTGRES_PASSWORD: p
+    ports:
+      - "5437:5432"
+
+volumes:
+  postgres1_data:
+  postgres2_data:
+  postgres3_data:
+
+
+# docker exec -it p1 psql -U u db
