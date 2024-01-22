@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: backup-postgres
+    environment:
+      POSTGRES_DB: db
+      POSTGRES_USER: u
+      POSTGRES_PASSWORD: "p"
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backup:/backup
+
+  # backup-full:
+  #   image: postgres:latest
+  #   volumes:
+  #     - ./backup/full/:/backup
+  #   command: ./backup/backup.sh  
+
+  # backup-incr:
+  #   image: postgres:latest
+  #   volumes:
+  #     - ./backup/incr/:/backup
+  #   command: ./backup/backup.sh  
+
+
+volumes:
+  postgres_data:
+
+# docker-compose exec -ti postgres /backup/full/backup.sh
+# docker-compose exec -ti postgres /backup/incr/backup.sh
+# docker-compose exec -ti postgres /backup/diff/backup.sh
+# docker-compose exec -ti postgres backup/cdp/backup.sh
+# docker-compose exec -ti postgres /backup/reverse_delta/backup.sh
